@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -12,23 +13,33 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    Button button;
-    String url;
+    Button btPare;
+    Button btJordan;
+    //String url;
     public static final int REQUEST_CALL_PHONE = 2;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        button = findViewById(R.id.button);
-        url = "https://www.google.es";
-        button.setOnClickListener(new View.OnClickListener() {
+        btPare = findViewById(R.id.btPare);
+        btJordan = findViewById(R.id.btJordan);
+        //url = "https://www.google.es";
+        btPare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                abrirAplicaciob("637336566");
+                abrirAplicaciob("com.cristobal.bernal.coche","MainActivity","637336566");
             }
         });
+        btJordan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirAplicaciob("com.cristobal.bernal.coche","MainActivity","644309410");
+            }
+        });
+
     }
-    private void abrirAplicaciob(String tel) {
+    private void abrirAplicaciob(String paquete, String clase,String tel) {
         int permision = ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
         if (permision != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PHONE);
@@ -36,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
             Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tel));
             startActivity(callIntent);
         }
-
 
         /*
         //Abrir la galaria
