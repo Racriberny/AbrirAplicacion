@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     Button btJordan;
     //String url;
     public static final int REQUEST_CALL_PHONE = 2;
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
