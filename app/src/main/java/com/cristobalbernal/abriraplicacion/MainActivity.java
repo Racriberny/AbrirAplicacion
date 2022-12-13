@@ -28,25 +28,18 @@ public class MainActivity extends AppCompatActivity {
         btPare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                abrirAplicaciob("com.cristobal.bernal.coche","MainActivity","637336566");
+                llamarPersonas("637336566");
             }
         });
         btJordan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                abrirAplicaciob("com.cristobal.bernal.coche","MainActivity","644309410");
+                llamarPersonas("644309410");
             }
         });
 
     }
-    private void abrirAplicaciob(String paquete, String clase,String tel) {
-        int permision = ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
-        if (permision != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PHONE);
-        } else {
-            Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tel));
-            startActivity(callIntent);
-        }
+    private void abrirAplicacion(String paquete, String clase) {
 
         /*
         //Abrir la galaria
@@ -79,5 +72,14 @@ public class MainActivity extends AppCompatActivity {
 
          */
 
+    }
+    private void llamarPersonas(String tel) {
+        int permision = ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
+        if (permision != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PHONE);
+        } else {
+            Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tel));
+            startActivity(callIntent);
+        }
     }
 }
